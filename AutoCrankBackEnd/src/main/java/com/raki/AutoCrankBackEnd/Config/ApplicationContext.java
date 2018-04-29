@@ -73,7 +73,7 @@ public class ApplicationContext {
 	@Autowired
 	@Bean("productDao")
 	public ProductDao getProductDao(SessionFactory sessionFactory) {
-		return new ProductDaoImpl();
+		return new ProductDaoImpl(sessionFactory);
 	}
 
 	@Autowired

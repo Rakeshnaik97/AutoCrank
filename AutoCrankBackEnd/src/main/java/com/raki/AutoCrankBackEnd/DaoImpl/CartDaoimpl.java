@@ -1,6 +1,7 @@
 package com.raki.AutoCrankBackEnd.DaoImpl;
 
 import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -9,54 +10,55 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.raki.AutoCrankBackEnd.Dao.ProductDao;
-import com.raki.AutoCrankBackEnd.Model.Product;
-
+@Repository("cartDao")
 @Transactional
-@Repository("productDao")
 @EnableTransactionManagement
-public class ProductDaoImpl implements ProductDao {
+
+public class CartDaoimpl implements CartDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
-	public ProductDaoImpl(SessionFactory sessionFactory) {
+	public CartDaoimpl(SessionFactory sessionFactory) {
 		// TODO Auto-generated constructor stub
 		this.sessionFactory = sessionFactory;
 	}
 
-	public boolean saveorupdateProduct(Product product) {
+	@Override
+	public boolean saveorupdateCart(Cart cart) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().saveOrUpdate(product);
-		return true;
-
-	}
-
-	public boolean deleteProduct(Product product) {
-		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().delete(product);
+		sessionFactory.getCurrentSession().saveOrUpdate(cart);
 		return true;
 	}
 
-	public Product getProduct(String ProductId) {
+	@Override
+	public boolean deleteCart(Cart cart) {
 		// TODO Auto-generated method stub
-		String s = "From Product Where productId ='" + ProductId + "'";
+		sessionFactory.getCurrentSession().delete(cart);
+		return true;
+	}
+
+	@Override
+	public Cart getCart(String cartId) {
+		// TODO Auto-generated method stub
+		String s = "From Cart where cartId='" + cartId + "'";
 		Query q = sessionFactory.getCurrentSession().createQuery(s);
-		List<Product> list = (List<Product>) q.list();
+		List<Cart> list = (List<Cart>) q.list();
 		if (list == null || list.isEmpty()) {
-			System.out.println("Product List Not Found");
+			System.out.println("Cart Not Found");
 			return null;
 		} else {
-			System.out.println("Product list");
+			System.out.println("Cart List");
 			return list.get(0);
 		}
 	}
 
-	public List<Product> list() {
+	@Override
+	public List<Cart> list() {
 		// TODO Auto-generated method stub
-		List<Product> product = (List<Product>) sessionFactory.getCurrentSession().createCriteria(Product.class)
+		List<Cart> list = (List<Cart>) sessionFactory.getCurrentSession().createCriteria(Cart.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-		return product;
+		return list;
 	}
 
 }

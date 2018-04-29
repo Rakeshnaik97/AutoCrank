@@ -1,6 +1,7 @@
 package com.raki.AutoCrankBackEnd.DaoImpl;
 
 import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -9,54 +10,55 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.raki.AutoCrankBackEnd.Dao.ProductDao;
-import com.raki.AutoCrankBackEnd.Model.Product;
-
-@Transactional
-@Repository("productDao")
 @EnableTransactionManagement
-public class ProductDaoImpl implements ProductDao {
+@Transactional
+@Repository("orderItemsDao")
+public class OrderItemsDaoImpl implements OrderItemsDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
-	public ProductDaoImpl(SessionFactory sessionFactory) {
+	public OrderItemsDaoImpl(SessionFactory sessionFactory) {
 		// TODO Auto-generated constructor stub
 		this.sessionFactory = sessionFactory;
 	}
 
-	public boolean saveorupdateProduct(Product product) {
+	@Override
+	public boolean saveorupdateOrderItems(OrderItems orderItems) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().saveOrUpdate(product);
+		sessionFactory.getCurrentSession().saveOrUpdate(orderItems);
 		return true;
 
 	}
 
-	public boolean deleteProduct(Product product) {
+	@Override
+	public boolean deleteOrderItems(OrderItems orderItems) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().delete(product);
+		sessionFactory.getCurrentSession().delete(orderItems);
 		return true;
 	}
 
-	public Product getProduct(String ProductId) {
+	@Override
+	public OrderItems getOrderItems(String orderItemsId) {
 		// TODO Auto-generated method stub
-		String s = "From Product Where productId ='" + ProductId + "'";
+		String s = "From OrderItems where orderItemsId='" + orderItemsId + "'";
 		Query q = sessionFactory.getCurrentSession().createQuery(s);
-		List<Product> list = (List<Product>) q.list();
+		List<OrderItems> list = (List<OrderItems>) q.list();
 		if (list == null || list.isEmpty()) {
-			System.out.println("Product List Not Found");
+			System.out.println("OrderItems Is Empty");
 			return null;
 		} else {
-			System.out.println("Product list");
+			System.out.println("OrderItems Info:");
 			return list.get(0);
 		}
 	}
 
-	public List<Product> list() {
+	@Override
+	public List<OrderItems> list() {
 		// TODO Auto-generated method stub
-		List<Product> product = (List<Product>) sessionFactory.getCurrentSession().createCriteria(Product.class)
+		List<OrderItems> list = (List<OrderItems>) sessionFactory.getCurrentSession().createCriteria(OrderItems.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-		return product;
+		return list;
 	}
 
 }

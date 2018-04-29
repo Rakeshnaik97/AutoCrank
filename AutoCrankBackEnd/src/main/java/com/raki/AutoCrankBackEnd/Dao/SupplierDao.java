@@ -9,7 +9,7 @@ public interface SupplierDao {
 
 	public boolean deleteSupplier(Supplier supplier);
 
-	public boolean getSupplier(Supplier supplier);
+	public Supplier getSupplier(String supplierId);
 
 	public List<Supplier> list();
 }

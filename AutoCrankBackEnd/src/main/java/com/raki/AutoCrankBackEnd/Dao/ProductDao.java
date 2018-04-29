@@ -9,7 +9,7 @@ public interface ProductDao {
 
 	public boolean deleteProduct(Product product);
 
-	public boolean getProduct(Product product);
+	public Product getProduct(String productId);
 
 	public List<Product> list();
 }

@@ -1,6 +1,7 @@
 package com.raki.AutoCrankBackEnd.DaoImpl;
 
 import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -9,54 +10,56 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.raki.AutoCrankBackEnd.Dao.ProductDao;
-import com.raki.AutoCrankBackEnd.Model.Product;
+
 
 @Transactional
-@Repository("productDao")
 @EnableTransactionManagement
-public class ProductDaoImpl implements ProductDao {
+@Repository("billingDao")
+public class BillingDaoImpl implements BillingDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
-	public ProductDaoImpl(SessionFactory sessionFactory) {
+	public BillingDaoImpl(SessionFactory sessionFactory) {
 		// TODO Auto-generated constructor stub
 		this.sessionFactory = sessionFactory;
 	}
 
-	public boolean saveorupdateProduct(Product product) {
+	@Override
+	public boolean saveorupdateBilling(Billing billing) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().saveOrUpdate(product);
-		return true;
-
-	}
-
-	public boolean deleteProduct(Product product) {
-		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().delete(product);
+		sessionFactory.getCurrentSession().saveOrUpdate(billing);
 		return true;
 	}
 
-	public Product getProduct(String ProductId) {
+	@Override
+	public boolean deleteBilling(Billing billing) {
 		// TODO Auto-generated method stub
-		String s = "From Product Where productId ='" + ProductId + "'";
+		sessionFactory.getCurrentSession().delete(billing);
+		return true;
+	}
+
+	@Override
+	public Billing getBilling(String billingId) {
+		// TODO Auto-generated method stub
+		String s = "From Billing Where billingId ='" + billingId + "'";
 		Query q = sessionFactory.getCurrentSession().createQuery(s);
-		List<Product> list = (List<Product>) q.list();
+		List<Billing> list = (List<Billing>) q.list();
 		if (list == null || list.isEmpty()) {
-			System.out.println("Product List Not Found");
+			System.out.println("Billing List Not Found");
 			return null;
 		} else {
-			System.out.println("Product list");
+			System.out.println("Billing List");
 			return list.get(0);
 		}
 	}
 
-	public List<Product> list() {
+	@Override
+	public List<Billing> list() {
 		// TODO Auto-generated method stub
-		List<Product> product = (List<Product>) sessionFactory.getCurrentSession().createCriteria(Product.class)
+		List<Billing> billing = (List<Billing>) sessionFactory.getCurrentSession().createCriteria(Billing.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-		return product;
+		return billing;
 	}
 
 }
