@@ -1,6 +1,6 @@
 package com.raki.AutoCrankBackEnd.Model;
-
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,6 +19,11 @@ public class Supplier {
 	private String supplierName;
 	private String supplierAddress;
 	private String SupplierPh_no;
+
+	public Supplier() {
+		// TODO Auto-generated constructor stub
+		this.supplierId = "SUPP" + UUID.randomUUID().toString().substring(30).toUpperCase();
+	}
 
 	@OneToMany(mappedBy = "supplier")
 	private List<Product> product;

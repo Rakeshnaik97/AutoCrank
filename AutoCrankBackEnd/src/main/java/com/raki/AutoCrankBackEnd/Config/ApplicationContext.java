@@ -11,16 +11,37 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 
+import com.raki.AutoCrankBackEnd.Dao.AuthenticationDao;
+import com.raki.AutoCrankBackEnd.Dao.BillingDao;
+import com.raki.AutoCrankBackEnd.Dao.CartDao;
+import com.raki.AutoCrankBackEnd.Dao.CartItemsDao;
 import com.raki.AutoCrankBackEnd.Dao.CategoryDao;
+import com.raki.AutoCrankBackEnd.Dao.OrderDao;
+import com.raki.AutoCrankBackEnd.Dao.OrderItemsDao;
 import com.raki.AutoCrankBackEnd.Dao.ProductDao;
+import com.raki.AutoCrankBackEnd.Dao.ShippingDao;
 import com.raki.AutoCrankBackEnd.Dao.SupplierDao;
 import com.raki.AutoCrankBackEnd.Dao.UserDao;
+import com.raki.AutoCrankBackEnd.DaoImpl.AuthenticationDaoImpl;
+import com.raki.AutoCrankBackEnd.DaoImpl.BillingDaoImpl;
+import com.raki.AutoCrankBackEnd.DaoImpl.CartDaoimpl;
+import com.raki.AutoCrankBackEnd.DaoImpl.CartItemsDaoImpl;
 import com.raki.AutoCrankBackEnd.DaoImpl.CategoryDaoImpl;
+import com.raki.AutoCrankBackEnd.DaoImpl.OrderDaoImpl;
+import com.raki.AutoCrankBackEnd.DaoImpl.OrderItemsDaoImpl;
 import com.raki.AutoCrankBackEnd.DaoImpl.ProductDaoImpl;
+import com.raki.AutoCrankBackEnd.DaoImpl.ShippingDaoImpl;
 import com.raki.AutoCrankBackEnd.DaoImpl.SupplierDaoImpl;
 import com.raki.AutoCrankBackEnd.DaoImpl.UserDaoImpl;
+import com.raki.AutoCrankBackEnd.Model.Authentication;
+import com.raki.AutoCrankBackEnd.Model.Billing;
+import com.raki.AutoCrankBackEnd.Model.Cart;
+import com.raki.AutoCrankBackEnd.Model.CartItems;
 import com.raki.AutoCrankBackEnd.Model.Category;
+import com.raki.AutoCrankBackEnd.Model.Order;
+import com.raki.AutoCrankBackEnd.Model.OrderItems;
 import com.raki.AutoCrankBackEnd.Model.Product;
+import com.raki.AutoCrankBackEnd.Model.Shipping;
 import com.raki.AutoCrankBackEnd.Model.Supplier;
 import com.raki.AutoCrankBackEnd.Model.User;
 
@@ -52,8 +73,15 @@ public class ApplicationContext {
 		sessionBuilder.addProperties(getHibernateProperties());
 		sessionBuilder.addAnnotatedClass(Category.class);
 		sessionBuilder.addAnnotatedClass(Product.class);
-		sessionBuilder.addAnnotatedClass(Supplier.class);
 		sessionBuilder.addAnnotatedClass(User.class);
+		sessionBuilder.addAnnotatedClass(Authentication.class);
+		sessionBuilder.addAnnotatedClass(Billing.class);
+		sessionBuilder.addAnnotatedClass(Cart.class);
+		sessionBuilder.addAnnotatedClass(CartItems.class);
+		sessionBuilder.addAnnotatedClass(Order.class);
+		sessionBuilder.addAnnotatedClass(OrderItems.class);
+		sessionBuilder.addAnnotatedClass(Supplier.class);
+		sessionBuilder.addAnnotatedClass(Shipping.class);
 		return sessionBuilder.buildSessionFactory();
 	}
 
@@ -64,7 +92,7 @@ public class ApplicationContext {
 		return transactionManager;
 	}
 
-	@Autowired // accessing @Repository and calling all methods inside it
+	@Autowired // Accessing @repsoritary and calling all methods inside it
 	@Bean("categoryDao")
 	public CategoryDao getCategoryDao(SessionFactory sessionFactory) {
 		return new CategoryDaoImpl(sessionFactory);
@@ -88,4 +116,45 @@ public class ApplicationContext {
 		return new UserDaoImpl(sessionFactory);
 	}
 
+	@Autowired
+	@Bean("authenticationDao")
+	public AuthenticationDao getAuthenticationDao(SessionFactory sessionFactory) {
+		return new AuthenticationDaoImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean("billingDao")
+	public BillingDao getBillingDao(SessionFactory sessionFactory) {
+		return new BillingDaoImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean("cartDao")
+	public CartDao getCartDao(SessionFactory sessionFactory) {
+		return new CartDaoimpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean("cartItemsDao")
+	public CartItemsDao getCartItemsDao(SessionFactory sessionFactory) {
+		return new CartItemsDaoImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean("orderDao")
+	public OrderDao getOrderDao(SessionFactory sessionFactory) {
+		return new OrderDaoImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean("orderItemsDao")
+	public OrderItemsDao getOrderItemsDao(SessionFactory sessionFactory) {
+		return new OrderItemsDaoImpl(sessionFactory);
+	}
+
+	@Autowired
+	@Bean("shippingDao")
+	public ShippingDao getShippingDao(SessionFactory sessionFactory) {
+		return new ShippingDaoImpl(sessionFactory);
+	}
 }

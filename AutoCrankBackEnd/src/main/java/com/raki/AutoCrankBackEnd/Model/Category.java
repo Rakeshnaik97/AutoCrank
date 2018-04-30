@@ -1,6 +1,7 @@
 package com.raki.AutoCrankBackEnd.Model;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,6 +16,11 @@ public class Category {
 	@Id
 	private String catId;
 	private String catName;
+
+	public Category() {
+		// TODO Auto-generated constructor stub
+		this.catId = "CAT" + UUID.randomUUID().toString().substring(30).toUpperCase();
+	}
 
 	@OneToMany(mappedBy = "category")
 	private List<Product> product;
@@ -45,8 +51,5 @@ public class Category {
 	public void setCatName(String catName) {
 		this.catName = catName;
 	}
-
-
-	
 
 }

@@ -1,5 +1,7 @@
 package com.raki.AutoCrankBackEnd.Model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,6 +20,11 @@ public class Billing {
 	private String billingAddress;
 	private String billingPh_no;
 	private String billingCountry;
+
+	public Billing() {
+		this.billingId = "BILL" + UUID.randomUUID().toString().substring(30).toUpperCase();
+		// TODO Auto-generated constructor stub
+	}
 
 	@OneToOne
 	@JoinColumn(name = "userId")

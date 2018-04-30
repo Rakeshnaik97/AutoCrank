@@ -1,5 +1,7 @@
 package com.raki.AutoCrankBackEnd.Model;
+
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,6 +22,11 @@ public class Order {
 	private String orderDate;
 	private String orderTime;
 	private double orderGrandTotal;
+
+	public Order() {
+		// TODO Auto-generated constructor stub
+		this.orderId = "ORDER" + UUID.randomUUID().toString().substring(30).toUpperCase();
+	}
 
 	@OneToOne
 	@JoinColumn(name = "billingId")

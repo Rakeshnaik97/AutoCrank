@@ -1,4 +1,5 @@
 package com.raki.AutoCrankBackEnd.DaoImpl;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -6,9 +7,15 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.raki.AutoCrankBackEnd.Dao.ShippingDao;
+import com.raki.AutoCrankBackEnd.Model.Shipping;
 
 @Repository("shippingDao")
+@Transactional
+@EnableTransactionManagement
 public class ShippingDaoImpl implements ShippingDao {
 	@Autowired
 	SessionFactory sessionFactory;

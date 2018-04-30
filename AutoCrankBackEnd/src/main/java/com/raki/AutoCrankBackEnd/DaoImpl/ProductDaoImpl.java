@@ -25,6 +25,7 @@ public class ProductDaoImpl implements ProductDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	
 	public boolean saveorupdateProduct(Product product) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().saveOrUpdate(product);
@@ -32,12 +33,14 @@ public class ProductDaoImpl implements ProductDao {
 
 	}
 
+	
 	public boolean deleteProduct(Product product) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().delete(product);
 		return true;
 	}
 
+	
 	public Product getProduct(String ProductId) {
 		// TODO Auto-generated method stub
 		String s = "From Product Where productId ='" + ProductId + "'";
@@ -52,10 +55,10 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 
+	
 	public List<Product> list() {
 		// TODO Auto-generated method stub
-		List<Product> product = (List<Product>) sessionFactory.getCurrentSession().createCriteria(Product.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<Product> product = (List<Product>) sessionFactory.getCurrentSession().createCriteria(Product.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return product;
 	}
 

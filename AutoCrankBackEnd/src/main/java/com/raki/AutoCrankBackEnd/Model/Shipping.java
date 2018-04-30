@@ -1,4 +1,5 @@
 package com.raki.AutoCrankBackEnd.Model;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,8 +21,13 @@ public class Shipping {
 	private String shippingPh_no;
 	private String shippingCountry;
 
+	public Shipping() {
+		// TODO Auto-generated constructor stub
+		this.shippingId = "SHIP" + UUID.randomUUID().toString().substring(30).toUpperCase();
+	}
+
 	@ManyToOne
-	@JoinColumn(name = "userid")
+	@JoinColumn(name = "userId")
 	private User user;
 
 	@OneToOne

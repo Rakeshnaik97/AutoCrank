@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.raki.AutoCrankBackEnd.Dao.CartDao;
+import com.raki.AutoCrankBackEnd.Model.Cart;
+
 @Repository("cartDao")
 @Transactional
 @EnableTransactionManagement

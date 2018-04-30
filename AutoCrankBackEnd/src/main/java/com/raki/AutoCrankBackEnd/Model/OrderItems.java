@@ -1,5 +1,7 @@
 package com.raki.AutoCrankBackEnd.Model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -15,6 +17,11 @@ public class OrderItems {
 	@Id
 	private String orderItemsId;
 	private String orderProductId;
+
+	public OrderItems() {
+		// TODO Auto-generated constructor stub
+		this.orderItemsId = "ORDITM" + UUID.randomUUID().toString().substring(30).toUpperCase();
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "orderId")
@@ -43,7 +50,5 @@ public class OrderItems {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-
-
 
 }

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.raki.AutoCrankBackEnd.Dao.OrderItemsDao;
+import com.raki.AutoCrankBackEnd.Model.OrderItems;
 @EnableTransactionManagement
 @Transactional
 @Repository("orderItemsDao")

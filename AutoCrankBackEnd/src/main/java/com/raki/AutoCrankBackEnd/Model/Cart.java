@@ -1,6 +1,7 @@
 package com.raki.AutoCrankBackEnd.Model;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,6 +18,12 @@ public class Cart {
 	private String cartId;
 	private double cartGrandTotal = 0.0;
 	private int cartTotalItems = 0;
+
+	public Cart() {
+
+		this.cartId = "CART" + UUID.randomUUID().toString().substring(30).toUpperCase();
+		// TODO Auto-generated constructor stub
+	}
 
 	@OneToMany(mappedBy = "cart")
 	private List<CartItems> cartItems;

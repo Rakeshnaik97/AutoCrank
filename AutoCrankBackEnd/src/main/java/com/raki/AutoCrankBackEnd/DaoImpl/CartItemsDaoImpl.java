@@ -1,4 +1,5 @@
 package com.raki.AutoCrankBackEnd.DaoImpl;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -8,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.raki.AutoCrankBackEnd.Dao.CartItemsDao;
+import com.raki.AutoCrankBackEnd.Model.CartItems;
 
 @Transactional
 @EnableTransactionManagement

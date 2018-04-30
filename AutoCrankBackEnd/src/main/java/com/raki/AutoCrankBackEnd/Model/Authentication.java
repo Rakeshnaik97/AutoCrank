@@ -1,5 +1,7 @@
 package com.raki.AutoCrankBackEnd.Model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,12 +11,17 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table
 @Component
-public class Authentication {
+public class Authentication{
 	@Id
 	private String roleId;
 	private String roleName = "ROLE_USER";
 	private String UserName;
 
+	 public Authentication() {
+			
+		  this.roleId = "AUTH" + UUID.randomUUID().toString().substring(30).toUpperCase();
+
+	}
 	public String getRoleId() {
 		return roleId;
 	}

@@ -9,12 +9,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.raki.AutoCrankBackEnd.Dao.CategoryDao;
 import com.raki.AutoCrankBackEnd.Model.Category;
 
 @Transactional
 @Repository("categoryDao")
 @EnableTransactionManagement
-public class CategoryDaoImpl implements com.raki.AutoCrankBackEnd.Dao.CategoryDao {
+public class CategoryDaoImpl implements CategoryDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
