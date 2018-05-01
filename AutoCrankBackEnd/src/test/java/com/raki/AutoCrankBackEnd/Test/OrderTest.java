@@ -23,8 +23,7 @@ public class OrderTest {
 
 		Order order = (Order) context.getBean("order");
 		OrderDao orderDao = (OrderDao) context.getBean("orderDao");
-		OrderItems orderItems = (OrderItems) context.getBean("orderItems");
-		OrderItemsDao orderItemsDao = (OrderItemsDao) context.getBean("orderItemsDao");
+
 
 		User user = (User) context.getBean("user");
 		UserDao userDao = (UserDao) context.getBean("userDao");

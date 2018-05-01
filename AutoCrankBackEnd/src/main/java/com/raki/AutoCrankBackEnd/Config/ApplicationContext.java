@@ -7,9 +7,12 @@ import javax.sql.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.raki.AutoCrankBackEnd.Dao.AuthenticationDao;
 import com.raki.AutoCrankBackEnd.Dao.BillingDao;
@@ -45,6 +48,10 @@ import com.raki.AutoCrankBackEnd.Model.Shipping;
 import com.raki.AutoCrankBackEnd.Model.Supplier;
 import com.raki.AutoCrankBackEnd.Model.User;
 
+@Configuration // to let know it is configuration
+@ComponentScan("com.raki.*") // group id When i refresh compiler should search entire in com.niit.*
+@EnableTransactionManagement // when ever i call save or delete to let know where is that object at
+								// repsoritry in daoimpl it both should have same name
 public class ApplicationContext {
 	@Bean("dataSource") // Connection of h2 database
 	public DataSource getDataSource() {
