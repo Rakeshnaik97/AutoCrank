@@ -17,7 +17,7 @@ public class SupplierTest {
 
 		sup.setSupplierId("S101");
 		sup.setSupplierName("Rakesh");
-		sup.setSupplierPh_no("9738620777");
+		sup.setSupplierPh_no("973");
 		sup.setSupplierAddress("supplierAddress");
 		if (supDao.saveorupdateSupplier(sup) == true) {
 			System.out.println("Supplier Added Successfully");
@@ -27,7 +27,7 @@ public class SupplierTest {
 
 		sup.setSupplierId("S102");
 		sup.setSupplierName("supplierName");
-		sup.setSupplierPh_no("08026998367");
+		sup.setSupplierPh_no("087");
 		sup.setSupplierAddress("supplierAddress");
 		if (supDao.saveorupdateSupplier(sup) == true) {
 			System.out.println("Supplier Added Successfully");
