@@ -27,7 +27,7 @@ public class BillingTest {
 		bill.setBillingId("B101");
 		bill.setBillingName("Rakesh");
 		bill.setBillingAddress("NagaraBhavi");
-		bill.setBillingPh_no("9738620777");
+		bill.setBillingPh_no("97");
 		bill.setBillingCountry("India");
 		user = userDao.getUser("U101"); // setting Value For user for Unique UserId
 		bill.setUser(user);
@@ -43,7 +43,7 @@ public class BillingTest {
 		bill.setBillingId("B102");
 		bill.setBillingName("Rakesh");
 		bill.setBillingAddress("NagaraBhavi");
-		bill.setBillingPh_no("9738620777");
+		bill.setBillingPh_no("9738");
 		bill.setBillingCountry("India");
 		user = userDao.getUser("U102");
 		bill.setUser(user);
